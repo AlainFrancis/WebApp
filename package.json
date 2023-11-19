@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npx run-sequence build:html build:css build:js",
-    "build:html": "npx html-minifier --collapse-whitespace -o index.html < index.html",
+    "build:html": "npx html-minifier --collapse-whitespace -o C:/Users/Acer/Desktop/DS_Project1/WebApp/index.htmlindex.html < index.html",
     "build:css": "npx postcss -c styles.css -o build/styles.css",
     "build:js": "npx webpack --mode production -o script.js"
   },
