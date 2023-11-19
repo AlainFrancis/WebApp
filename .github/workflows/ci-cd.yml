@@ -1,4 +1,4 @@
-name: CI/CD Pipeline
+name: Build and Test Web Application
 
 on:
   push:
@@ -6,18 +6,26 @@ on:
       - main
 
 jobs:
-  build-and-test:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "16"
 
       - name: Install dependencies
         run: npm install
 
-      - name: Build the web application
+      - name: Build HTML and CSS
+        run: npx html-minifier -c .html > index.html && npx postcss -c styles.css -o build/styles.css
+
+      - name: Build JavaScript
         run: npm run build
 
-      - name: Run automated tests
-        run: npm run test
+      - name: Run tests
+        run: npm test
