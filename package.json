@@ -1,14 +1,16 @@
 {
   "name": "webapp",
   "version": "1.0.0",
-  "description": "",
+  "description": "A simple web application",
   "main": "script.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npm run build:html && npm run build:css && npm run build:js"
+    "build": "npx run-sequence build:html build:css build:js",
+    "build:html": "npx html-minifier --collapse-whitespace -o index.html < index.html",
+    "build:css": "npx postcss -c styles.css -o build/styles.css",
+    "build:js": "npx webpack --mode production -o script.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC"
-  
 }
